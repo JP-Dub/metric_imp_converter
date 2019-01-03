@@ -7,17 +7,20 @@
 */
 
 function ConvertHandler() {
-    let index, num, uniit  
+  let index, num, unit;
+  
   this.getNum = function(input) {
     var result;
-    let index = input.indexOf(input.match(/[a-zA-Z]/))
-    let num = input.substring(0, index);
-    return result;
+        index = input.indexOf(input.match(/[a-zA-Z]/));
+        num = input.substring(0, index);
+    
+    return num;
   };
   
   this.getUnit = function(input) {
     var result;
-    
+        unit = input.substring(index, input.length);
+    console.log(unit)
     return result;
   };
   
