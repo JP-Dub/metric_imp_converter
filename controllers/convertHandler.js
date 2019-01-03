@@ -7,10 +7,11 @@
 */
 
 function ConvertHandler() {
-  
+    let index, num, uniit  
   this.getNum = function(input) {
     var result;
-    
+    let index = input.indexOf(input.match(/[a-zA-Z]/))
+    let num = input.substring(0, index);
     return result;
   };
   
