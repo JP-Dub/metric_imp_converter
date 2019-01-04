@@ -13,7 +13,7 @@ function ConvertHandler() {
     var result;
         index = input.indexOf(input.match(/[a-zA-Z]/));
         num = input.substring(0, index);
-        console.log(Number.isInteger(num))
+        console.log(Number.isInteger(parseInt(num)))
     return num;
   };
   
