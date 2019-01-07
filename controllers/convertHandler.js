@@ -44,10 +44,10 @@ function ConvertHandler() {
   
   this.getUnit = function(input) {
     
-    let string = input.substring(index, input.length);
-     reg  = /lbs|kg|mi|km|gal|L/i,
-        unit = string.match(reg);
-        unit = unit[0];
+    let string = input.substring(index, input.length),
+        reg    = /lbs|kg|mi|km|gal|L/i,
+        unit   = string.match(reg);
+        unit   = unit[0];
 
     return !unit || string.length > unit.length ? 'invalid unit'
       : unit == 'l' || unit == 'L' ? unit.toUpperCase()
