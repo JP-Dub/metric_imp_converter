@@ -6,22 +6,43 @@
 *       
 */
 
+let math = require('mathjs');
+
+function convertNumberString(arr) {
+     var decimal  = arr.match(/\./),
+       fraction = arr.match(/\//),
+       num      = 1;
+    
+   if(!arr) {
+     return num;
+   }
+  
+   if(decimal && fraction) {
+     var results = arr.split('.')
+     return math.eval(results[0] + results[1])
+   } 
+  
+   num = math.eval(arr);
+   return isNaN(num) ? 'invalid number' : num;
+}
+
 function ConvertHandler() {
   let index, num, unit;
   
   this.getNum = function(input) {
-    var result;
-        index = input.indexOf(input.match(/[a-zA-Z]/));
-        num = input.substring(0, index);
-        console.log(Number.isInteger(parseInt(num)))
+    var result;    
+    index  = input.indexOf(input.match(/[a-zA-Z]/));
+    num    = input.substring(0, index);
+    result = convertNumber    
+        
     return num;
   };
   
   this.getUnit = function(input) {
-    var result;
-        unit = input.substring(index, input.length);
-    console.log(unit)
-    return result;
+       
+    unit = input.substring(index, input.length);
+    
+    return unit;
   };
   
   this.getReturnUnit = function(initUnit) {
