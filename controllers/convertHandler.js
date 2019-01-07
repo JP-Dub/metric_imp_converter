@@ -8,22 +8,22 @@
 
 let math = require('mathjs');
 
-function convertNumberString(arr) {
-     var decimal  = arr.match(/\./),
-       fraction = arr.match(/\//),
-       num      = 1;
+function convertNumberString(string) {
+  var decimal  = string.match(/\./),
+      fraction = string.match(/\//),
+      num      = 1;
     
-   if(!arr) {
-     return num;
-   }
+  if(!string) {
+    return num;
+  }
   
-   if(decimal && fraction) {
-     var results = arr.split('.')
-     return math.eval(results[0] + results[1])
-   } 
+  if(decimal && fraction) {
+    var results = string.split('.')
+    return math.eval(results[0] + results[1])
+  } 
   
-   num = math.eval(arr);
-   return isNaN(num) ? 'invalid number' : num;
+  num = math.eval(string);
+  return isNaN(num) ? 'invalid number' : num;
 }
 
 function ConvertHandler() {
@@ -33,9 +33,9 @@ function ConvertHandler() {
     var result;    
     index  = input.indexOf(input.match(/[a-zA-Z]/));
     num    = input.substring(0, index);
-    result = convertNumber    
-        
-    return num;
+    result = convertNumberString(num);    
+
+    return result;
   };
   
   this.getUnit = function(input) {
