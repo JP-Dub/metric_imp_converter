@@ -56,13 +56,20 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-    var result;
+
+    let units = ['lbs', 'mi', 'gal','kg', 'km', 'L'],
+ 
+    let index, idx = units.indexOf(initUnit);
     
+    idx > 2 ? index = idx - 3 : index = idx + 3;
+  
+    return units[index];
     return result;
   };
 
   this.spellOutUnit = function(unit) {
     var result;
+    
     
     return result;
   };
