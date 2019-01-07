@@ -21,7 +21,7 @@ function convertNumberString(string) {
   if(decimal && fraction) {
     var results = string.split('.');
     
-    return math.eval(results[0] + results[1])
+    return parseInt(results[0]) + math.eval(results[1])
   } 
   
   num = math.eval(string);
