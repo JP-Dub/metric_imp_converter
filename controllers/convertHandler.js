@@ -14,16 +14,27 @@ function convertNumberString(string) {
       num      = 1;
     
   if(!string) {
+    
     return num;
   }
   
   if(decimal && fraction) {
-    var results = string.split('.')
+    var results = string.split('.');
+    
     return math.eval(results[0] + results[1])
   } 
   
   num = math.eval(string);
   return isNaN(num) ? 'invalid number' : num;
+}
+
+function convertUnitString(string) {
+  
+  let reg  = /lbs|kg|mi|km|gal|L/i,
+      unit = string.match(reg);
+
+  return !unit? 'invalid unit': unit[0] == 'l' || unit[0] == 'L' ? unit[0].toUpperCase(): unit[0].toLowerCase(); 
+  
 }
 
 function ConvertHandler() {
@@ -32,17 +43,16 @@ function ConvertHandler() {
   this.getNum = function(input) {
     var result;    
     index  = input.indexOf(input.match(/[a-zA-Z]/));
-    num    = input.substring(0, index);
+    num    = input.substring(0, index);  
     result = convertNumberString(num);    
 
     return result;
   };
   
   this.getUnit = function(input) {
-       
     unit = input.substring(index, input.length);
     
-    return unit;
+    return convertUnitString(unit);
   };
   
   this.getReturnUnit = function(initUnit) {
