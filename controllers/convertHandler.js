@@ -28,19 +28,12 @@ function convertNumberString(string) {
   return isNaN(num) ? 'invalid number' : num;
 }
 
-function convertUnitString(string) {
-  
-  let reg  = /lbs|kg|mi|km|gal|L/i,
-      unit = string.match(reg);
-
-  return !unit? 'invalid unit': unit[0] == 'l' || unit[0] == 'L' ? unit[0].toUpperCase(): unit[0].toLowerCase(); 
-  
-}
 
 function ConvertHandler() {
   let index, num, unit;
   
   this.getNum = function(input) {
+    
     var result;    
     index  = input.indexOf(input.match(/[a-zA-Z]/));
     num    = input.substring(0, index);  
@@ -50,21 +43,24 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    unit = input.substring(index, input.length);
     
-    return convertUnitString(unit);
+    unit = input.substring(index, input.length);
+    let reg  = /lbs|kg|mi|km|gal|L/i,
+        unit = unit.match(reg);
+
+    return !unit? 'invalid unit': unit[0] == 'l' || unit[0] == 'L' ? unit[0].toUpperCase(): unit[0].toLowerCase(); 
+  
   };
   
   this.getReturnUnit = function(initUnit) {
 
-    let units = ['lbs', 'mi', 'gal','kg', 'km', 'L'],
- 
-    let index, idx = units.indexOf(initUnit);
+    let units    = ['lbs', 'mi', 'gal','kg', 'km', 'L'] ,
+        location = units.indexOf(initUnit),
+        idx;
     
-    idx > 2 ? index = idx - 3 : index = idx + 3;
+    location > 2 ? idx = location - 3 : idx = location + 3;
   
-    return units[index];
-    return result;
+    return units[idx];
   };
 
   this.spellOutUnit = function(unit) {
