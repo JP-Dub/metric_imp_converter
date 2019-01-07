@@ -30,7 +30,7 @@ function convertNumberString(string) {
 
 
 function ConvertHandler() {
-  let index, num, unit;
+  let index, num;
   
   this.getNum = function(input) {
     
@@ -44,11 +44,14 @@ function ConvertHandler() {
   
   this.getUnit = function(input) {
     
-    unit = input.substring(index, input.length);
-    let reg  = /lbs|kg|mi|km|gal|L/i,
-        unit = unit.match(reg);
+    let string = input.substring(index, input.length);
+     reg  = /lbs|kg|mi|km|gal|L/i,
+        unit = string.match(reg);
+        unit = unit[0];
 
-    return !unit? 'invalid unit': unit[0] == 'l' || unit[0] == 'L' ? unit[0].toUpperCase(): unit[0].toLowerCase(); 
+    return !unit || string.length > unit.length ? 'invalid unit'
+      : unit == 'l' || unit == 'L' ? unit.toUpperCase()
+      : unit.toLowerCase();
   
   };
   
