@@ -32,6 +32,7 @@ function convertNumberString(string) {
 function ConvertHandler() {
   let index, num;
   
+  
   this.getNum = function(input) {
     
     var result;    
@@ -75,7 +76,7 @@ function ConvertHandler() {
     };
     
     
-    return result;
+    return abbreviate[unit];
   };
   
   this.convert = function(initNum, initUnit) {
@@ -91,8 +92,11 @@ function ConvertHandler() {
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     var result;
+    let unitFrom = this.spellOutUnit(initUnit),
+        unitTo   = this.spellOutUnit(returnUnit);
+    console.log(returnNum)
+    return initNum + ' ' + unitFrom + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + unitTo;
     
-    return result;
   };
   
 }

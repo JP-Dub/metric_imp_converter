@@ -24,8 +24,8 @@ module.exports = function (app) {
       var returnNum = convertHandler.convert(initNum, initUnit);
       var returnUnit = convertHandler.getReturnUnit(initUnit);
       var toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-      console.log('initNum: ', initNum, ', initUnit: ', initUnit, ', returnNum: ', returnNum, ', returnUnit: ', returnUnit)
-      //res.json
+      console.log('initNum: ', initNum, ', initUnit: ', initUnit, ', returnNum: ', returnNum, ', returnUnit: ', returnUnit, ', string: ' + toString)
+      res.json({});
     });
     
 };
