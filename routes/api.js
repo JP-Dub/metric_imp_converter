@@ -28,14 +28,19 @@ module.exports = function (app) {
       : initUnit == 'invalid unit' ? error.push(initUnit)
       : false;
       
-      !error.length ? err.length == 2 ? err = 'invalid number and unit' : err = error[0] : failed = {'error' : err};
+      if (!error.length) {
           
-      var returnNum = convertHandler.convert(initNum, initUnit);
-      var returnUnit = convertHandler.getReturnUnit(initUnit);
-      var toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-      results = { 'initNum' : initNum, 'initUnit' : initUnit, 'returnNum' : returnNum, 'returnUnit' : returnUnit, 'string' : toString};
+       var returnNum  = convertHandler.convert(initNum, initUnit),
+           returnUnit = convertHandler.getReturnUnit(initUnit),
+           toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+           results    = { 'initNum' : initNum, 'initUnit' : initUnit, 'returnNum' : returnNum, 'returnUnit' : returnUnit, 'string' : toString};
+      } 
       
-      res.json();
+      error.length == 2 ? err = 'invalid number and unit' : err = error[0]; 
+      failed = {'error' : err};
+      
+    
+      res.json(failed | results);
     });
     
 };
