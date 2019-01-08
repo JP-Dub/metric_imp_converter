@@ -17,21 +17,18 @@ module.exports = function (app) {
   app.set('json spaces', 2);
   app.route('/api/convert')
     .get(function (req, res){
-      var numError    = 'invalid number',
-          unitError   = 'invalid unit'
-          countErrors = 0,
-          error;
+      var error = [],
+          err;
     
       var input = req.query.input;
       var initNum = convertHandler.getNum(input);
       var initUnit = convertHandler.getUnit(input);
       
-      initNum == 'invalid number' ?  countErrors++ 
-      : initUnit == 'invalid unit' ? countErrors + 2
-      : countErros == 1 ? res.json('error' : 'invalid number') 
-      : countErros == 3 ? res.json('error' : 'invalid number and unit')
+      initNum == 'invalid number' ?  error.push(initNum)
+      : initUnit == 'invalid unit' ? error.push(initUnit)
+      : false;
       
-      
+      !error.length ? err.length == 2 ? err = 'invalid number and unit' : err = error[
           
       var returnNum = convertHandler.convert(initNum, initUnit);
       var returnUnit = convertHandler.getReturnUnit(initUnit);
