@@ -74,12 +74,14 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
-    const galToL = 3.78541;
-    const lbsToKg = 0.453592;
-    const miToKm = 1.60934;
-    var result;
-    
-    return result;
+    const conversion = {
+      gal : 3.78541,  L   : 3.78541,
+      lbs : 0.453592, kg  : 0.453592,
+      mi  : 1.60934,  km  : 1.60934
+    }
+  
+    return initUnit.match(/gal|lbs|mi/) ? (initNum * conversion[initUnit]).toFixed(5) 
+    : (initNum / conversion[initUnit]).toFixed(5);
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
