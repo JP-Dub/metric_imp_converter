@@ -68,6 +68,11 @@ function ConvertHandler() {
 
   this.spellOutUnit = function(unit) {
     var result;
+    let abbreviate = {
+      mi  : 'miles',   km : 'kilometers',
+      lbs : 'pounds',  kg : 'kilograms',
+      gal : 'gallons', L  : 'liter'
+    };
     
     
     return result;
