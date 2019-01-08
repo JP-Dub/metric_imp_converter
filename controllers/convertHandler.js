@@ -12,7 +12,10 @@ function convertNumberString(string) {
   var decimal  = string.match(/\./),
       fraction = string.match(/\//),
       num      = 1;
-    
+   
+  
+  
+  
   if(!string) {
     
     return num;
