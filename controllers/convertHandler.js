@@ -14,7 +14,7 @@ function convertNumberString(string) {
        fraction   = string.match(/\//),
        isNotValid = string.match(/[^0-9\/.]/),
        results;
-   console.log(string)
+   
    return (decimal.length > 1 || isNotValid ) ? 'invalid number' 
    : !string ? num  
    : (decimal && fraction) ? (
@@ -33,6 +33,7 @@ function ConvertHandler() {
     var result;    
     index  = input.indexOf(input.match(/$lbs|kg|mi|km|gal|L/i));
     num    = input.substring(0, index);  
+    console.log(index, num)
     result = convertNumberString(num);    
     
     return result;
