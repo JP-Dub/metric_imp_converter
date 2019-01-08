@@ -23,23 +23,18 @@ module.exports = function (app) {
       var input = req.query.input;
       var initNum = convertHandler.getNum(input);
       var initUnit = convertHandler.getUnit(input);
-      
-      function validate(initNum, initUnit, done) {
-        
-        initNum == 'invalid number' ?  error.push(initNum)
-        : initUnit == 'invalid unit' ? error.push(initUnit)
-        : false;
-        return done()
-      }
-      validate(initNum, initUnit, function(done));
-      console.log(error)
+
+      initNum == 'invalid number' ?  error.push(initNum) : false;
+      initUnit == 'invalid unit' ? error.push(initUnit) : false;
+
       if (!error.length) {
           
-       var returnNum  = convertHandler.convert(initNum, initUnit),
-           returnUnit = convertHandler.getReturnUnit(initUnit),
-           toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-           results    = { 'initNum' : initNum, 'initUnit' : initUnit, 'returnNum' : returnNum, 'returnUnit' : returnUnit, 'string' : toString};
+        var returnNum  = convertHandler.convert(initNum, initUnit),
+            returnUnit = convertHandler.getReturnUnit(initUnit);
       } 
+      
+    var toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+        results    = { 'initNum' : nullinitNum, 'initUnit' : initUnit, 'returnNum' : returnNum, 'returnUnit' : returnUnit, 'string' : toString};
       
       error.length == 2 ? err = 'invalid number and unit' : err = error[0]; 
       failed = {'error' : err};
