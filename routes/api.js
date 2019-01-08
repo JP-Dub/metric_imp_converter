@@ -24,10 +24,14 @@ module.exports = function (app) {
       var initNum = convertHandler.getNum(input);
       var initUnit = convertHandler.getUnit(input);
       
-      console.log(initNum, initUnit)
-      initNum == 'invalid number' ?  error.push(initNum)
-      : initUnit == 'invalid unit' ? error.push(initUnit)
-      : false;
+      function validate(initNum, initUnit, done) {
+        
+        initNum == 'invalid number' ?  error.push(initNum)
+        : initUnit == 'invalid unit' ? error.push(initUnit)
+        : false;
+        return done()
+      }
+      validate(initNum, initUnit, function(done));
       console.log(error)
       if (!error.length) {
           
