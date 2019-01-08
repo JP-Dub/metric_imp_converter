@@ -48,7 +48,9 @@ function ConvertHandler() {
     let string = input.substring(index, input.length),
         reg    = /lbs|kg|mi|km|gal|L/i,
         unit   = string.match(reg);
-        unit   = unit[0];
+        if(unit) {
+          unit = unit[0];
+        }
 
     return !unit || string.length > unit.length ? 'invalid unit'
       : unit == 'l' || unit == 'L' ? unit.toUpperCase()
@@ -68,18 +70,18 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function(unit) {
-    var result;
-    let abbreviate = {
+    
+    let spellOut = {
       mi  : 'miles',   km : 'kilometers',
       lbs : 'pounds',  kg : 'kilograms',
       gal : 'gallons', L  : 'liter'
     };
     
-    
-    return abbreviate[unit];
+    return spellOut[unit];
   };
   
   this.convert = function(initNum, initUnit) {
+    console.log(initNum, initUnit)
     const conversion = {
       gal : 3.78541,  L   : 3.78541,
       lbs : 0.453592, kg  : 0.453592,
@@ -91,10 +93,10 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
+
     let unitFrom = this.spellOutUnit(initUnit),
         unitTo   = this.spellOutUnit(returnUnit);
-    console.log(returnNum)
+    
     return initNum + ' ' + unitFrom + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + unitTo;
     
   };
