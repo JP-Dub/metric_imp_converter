@@ -27,16 +27,11 @@ function convertNumberString(string) {
 function ConvertHandler() {
   let index, num;
   
-  
   this.getNum = function(input) {
-    
-    var result;    
-    index  = input.indexOf(input.match(/$lbs|kg|mi|km|gal|L/i));
+      
+    index  = input.indexOf(input.match(/[^0-9\.\/]+$/));
     num    = input.substring(0, index);  
-    console.log(index, num)
-    result = convertNumberString(num);    
-    
-    return result;
+    return convertNumberString(num);       
   };
   
   this.getUnit = function(input) {
@@ -44,6 +39,7 @@ function ConvertHandler() {
     let string = input.substring(index, input.length),
         reg    = /lbs|kg|mi|km|gal|L/i,
         unit   = string.match(reg);
+        
         if(unit) {
           unit = unit[0];
         }
