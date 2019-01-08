@@ -9,26 +9,18 @@
 let math = require('mathjs');
 
 function convertNumberString(string) {
-  var decimal  = string.match(/\./),
-      fraction = string.match(/\//),
-      num      = 1;
+   var num        = 1,
+       decimal    = string.match(/\./g)||0,
+       fraction   = string.match(/\//),
+       isNotValid = string.match(/[^0-9\/.]/),
+       results;
    
-  
-  
-  
-  if(!string) {
-    
-    return num;
-  }
-  
-  if(decimal && fraction) {
-    var results = string.split('.');
-    
-    return parseInt(results[0]) + math.eval(results[1])
-  } 
-  
-  num = math.eval(string);
-  return isNaN(num) ? 'invalid number' : num;
+   return (decimal.length > 1 || isNotValid ) ? 'invalid number' 
+   : !string ? num  
+   : (decimal && fraction) ? (
+     results = string.split('.'),
+     parseInt(results[0]) + math.eval(results[1]))
+   : math.eval(string);
 }
 
 

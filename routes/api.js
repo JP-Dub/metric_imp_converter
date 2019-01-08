@@ -39,7 +39,7 @@ module.exports = function (app) {
       error.length == 2 ? err = 'invalid number and unit' : err = error[0]; 
       failed = {'error' : err};
       
-      console.log(results)
+      console.log('results ', results)
       res.json(results||failed);
     });
     
