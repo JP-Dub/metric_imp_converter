@@ -87,12 +87,20 @@ function ConvertHandler() {
     : initNum / conversion[initUnit];
   };
   
-  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-
-    let unitFrom = this.spellOutUnit(initUnit),
-        unitTo   = this.spellOutUnit(returnUnit);
+  this.getString = function(initNum, initUnit, returnNum, returnUnit, errors) {
     
-    return initNum + ' ' + unitFrom + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + unitTo;
+    if(!errors.length) {
+      
+      let unitFrom = this.spellOutUnit(initUnit),
+          unitTo   = this.spellOutUnit(returnUnit);
+      return initNum + ' ' + unitFrom + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + unitTo;  
+    } else {
+      
+      return errors.length > 1 ? 'invalid number and unit' : errors[0];
+
+    }
+    
+    
     
   };
   
