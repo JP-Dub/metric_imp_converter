@@ -23,7 +23,7 @@ module.exports = function (app) {
       var input = req.query.input;
       var initNum = convertHandler.getNum(input);
       var initUnit = convertHandler.getUnit(input);
-      
+      console.log(initNum, initUnit)
       initNum == 'invalid number' ?  error.push(initNum)
       : initUnit == 'invalid unit' ? error.push(initUnit)
       : false;
@@ -39,8 +39,8 @@ module.exports = function (app) {
       error.length == 2 ? err = 'invalid number and unit' : err = error[0]; 
       failed = {'error' : err};
       
-    
-      res.json(failed | results);
+      console.log(results)
+      res.json(results||failed);
     });
     
 };
