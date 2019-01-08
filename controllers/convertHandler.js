@@ -14,7 +14,7 @@ function convertNumberString(string) {
        fraction   = string.match(/\//),
        isNotValid = string.match(/[^0-9\/.]/),
        results;
-   
+   console.log(string)
    return (decimal.length > 1 || isNotValid ) ? 'invalid number' 
    : !string ? num  
    : (decimal && fraction) ? (
@@ -76,7 +76,7 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
-    console.log(initNum, initUnit)
+    
     const conversion = {
       gal : 3.78541,  L   : 3.78541,
       lbs : 0.453592, kg  : 0.453592,
@@ -90,18 +90,12 @@ function ConvertHandler() {
   this.getString = function(initNum, initUnit, returnNum, returnUnit, errors) {
     
     if(!errors.length) {
-      
       let unitFrom = this.spellOutUnit(initUnit),
           unitTo   = this.spellOutUnit(returnUnit);
       return initNum + ' ' + unitFrom + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + unitTo;  
-    } else {
-      
+    } else {    
       return errors.length > 1 ? 'invalid number and unit' : errors[0];
-
-    }
-    
-    
-    
+    }     
   };
   
 }

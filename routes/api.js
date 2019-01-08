@@ -29,7 +29,7 @@ module.exports = function (app) {
       initUnit == 'invalid unit' ? errors.push(initUnit) : false;
 
      // if (!errors.length) {
-          
+         // console.log(initNum)
         var returnNum  = convertHandler.convert(initNum, initUnit),
             returnUnit = convertHandler.getReturnUnit(initUnit);
       //} 
