@@ -31,10 +31,10 @@ function ConvertHandler() {
   this.getNum = function(input) {
     
     var result;    
-    index  = input.indexOf(input.match(/[a-zA-Z]/));
+    index  = input.indexOf(input.match(/$lbs|kg|mi|km|gal|L/i));
     num    = input.substring(0, index);  
     result = convertNumberString(num);    
-
+    
     return result;
   };
   
@@ -83,8 +83,8 @@ function ConvertHandler() {
       mi  : 1.60934,  km  : 1.60934
     }
   
-    return initUnit.match(/gal|lbs|mi/) ? (initNum * conversion[initUnit]).toFixed(5) 
-    : (initNum / conversion[initUnit]).toFixed(5);
+    return initUnit.match(/gal|lbs|mi/) ? initNum * conversion[initUnit]
+    : initNum / conversion[initUnit];
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
