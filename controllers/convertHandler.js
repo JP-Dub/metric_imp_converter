@@ -87,7 +87,7 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    initNum = num;
+    initNum = convertNum;
     if(!errors.length) {   
       let unitFrom = this.spellOutUnit(initUnit),
           unitTo   = this.spellOutUnit(returnUnit);
