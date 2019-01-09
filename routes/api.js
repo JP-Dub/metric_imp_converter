@@ -20,20 +20,17 @@ module.exports = function (app) {
   app.route('/api/convert')
     .get(function (req, res){
     
-      var input = req.query.input;
-      var initNum = convertHandler.getNum(input);
-      var initUnit = convertHandler.getUnit(input);
-      var returnNum  = convertHandler.convert(initNum, initUnit),
-            returnUnit = convertHandler.getReturnUnit(initUnit);
-      //} 
+      var input      = req.query.input,
+          initNum    = convertHandler.getNum(input),
+          initUnit   = convertHandler.getUnit(input),
+          returnNum  = convertHandler.convert(initNum, initUnit),
+          returnUnit = convertHandler.getReturnUnit(initUnit),
+          toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit),
+          results    = {'initNum'   : initNum,   'initUnit' : initUnit, 
+                        'returnNum' : returnNum, 'returnUnit' : returnUnit, 
+                        'string'    : toString
+                       };
       
-      var toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit, errors),
-          results    = { 'initNum' : initNum || 0, 'initUnit' : initUnit.toUpperCase() || null, 'returnNum' : returnNum || 0, 'returnUnit' : returnUnit.toUpperCase() || null, 'string' : toString};
-      
-      // errors.length == 2 ? err = 'invalid number and unit' : err = errors[0]; 
-      // var failed = {'error' : err};
-      
-      //console.log('results ', results)
       res.json(results);
     });
     
