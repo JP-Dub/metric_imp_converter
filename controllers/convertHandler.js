@@ -43,9 +43,7 @@ function ConvertHandler() {
         
     unit ? unit = unit[0] : false;
 
-    return !unit || string.length > unit.length ? 'invalid unit'
-      : unit == 'l' || unit == 'L' ? unit.toUpperCase()
-      : unit.toLowerCase();
+    return !unit || string.length > unit.length ? 'invalid unit': unit;
   
   };
   
@@ -68,7 +66,7 @@ function ConvertHandler() {
       gal : 'gallons', l  : 'liters'
     };
     
-    return spellOut[unit];
+    return spellOut[newUnit];
   };
   
   this.convert = function(initNum, initUnit) {
@@ -78,9 +76,9 @@ function ConvertHandler() {
       lbs : 0.453592, kg  : 0.453592,
       mi  : 1.60934,  km  : 1.60934
     }
-  
-    return initUnit.match(/gal|lbs|mi/i) ? initNum * conversion[initUnit]
-    : initNum / conversion[initUnit];
+   console.log(initUnit)
+    return initUnit.match(/gal|lbs|mi/i) ? initNum * conversion[initUnit.toLowerCase()]
+    : initNum / conversion[initUnit.toLowerCase()];
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit, errors) {

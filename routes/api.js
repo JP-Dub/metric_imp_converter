@@ -35,7 +35,7 @@ module.exports = function (app) {
       //} 
       
       var toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit, errors),
-          results    = { 'initNum' : initNum || 0, 'initUnit' : initUnit || null, 'returnNum' : returnNum || 0, 'returnUnit' : returnUnit || null, 'string' : toString};
+          results    = { 'initNum' : initNum || 0, 'initUnit' : initUnit.toUpperCase() || null, 'returnNum' : returnNum || 0, 'returnUnit' : returnUnit.toUpperCase() || null, 'string' : toString};
       
       // errors.length == 2 ? err = 'invalid number and unit' : err = errors[0]; 
       // var failed = {'error' : err};
