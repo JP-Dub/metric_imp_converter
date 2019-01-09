@@ -28,19 +28,35 @@ suite('Functional Tests', function() {
           assert.equal(res.body.initNum, 10);
           assert.equal(res.body.initUnit, 'L');
           assert.approximately(res.body.returnNum, 2.64172, 0.1);
-          assert.equal(res.body.returnUnit, 'gal');
+          assert.equal(res.body.returnUnit, 'GAL');
           done();
         });
       });
       
       test('Convert 32g (invalid input unit)', function(done) {
-        
-        //done();
+       chai.request(server)
+        .get('/api/convert')
+        .query({input: '32g'})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body.initNum, 32);
+          assert.equal(res.body.initUnit, 'g');
+          assert.approximately(res.body.returnNum, 0, 0.1);
+          assert.equal(res.body.returnUnit, 'INVALID UNIT');
+          done();
       });
       
       test('Convert 3/7.2/4kg (invalid number)', function(done) {
-        
-        //done();
+       chai.request(server)
+        .get('/api/convert')
+        .query({input: '3/7.2/4kg'})
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body.initNum, 3/7.2/4);
+          assert.equal(res.body.initUnit, 'kg');
+          assert.approximately(res.body.returnNum, 0, 0.1);
+          assert.equal(res.body.returnUnit, 'LBS');
+          done();
       });  
       
       test('Convert 3/7.2/4kilomegagram (invalid number and unit)', function(done) {
