@@ -10,12 +10,12 @@ let math = require('mathjs');
 
 function convertNumberString(string) {
    var num        = 1,
-       decimal    = string.match(/\./g)||0,
-       fraction   = string.match(/\//g)||0,
-       isNotValid = string.match(/[^0-9\/.]/),
+       decimal    = string.match(/\./),
+       fraction   = string.match(/\//),
+       isNotValid = string.match(/(\.).+\1|(\/).+\2|[^0-9\/.]/),
        results;
    
-   return (decimal.length > 1 || fraction.length > 1 || isNotValid ) ? 'invalid number' 
+   return ( isNotValid ) ? 'invalid number' 
    : !string ? num  
    : (decimal && fraction) ? (
      results = string.split('.'),
@@ -30,6 +30,7 @@ function ConvertHandler() {
   this.getNum = function(input) {
       
     index  = input.indexOf(input.match(/[^0-9\.\/]+$/));
+    index == -1 ? index = input.length : false;
     num    = input.substring(0, index);  
     return convertNumberString(num);       
   };
@@ -40,9 +41,7 @@ function ConvertHandler() {
         reg    = /lbs|kg|mi|km|gal|L/i,
         unit   = string.match(reg);
         
-        if(unit) {
-          unit = unit[0];
-        }
+    unit ? unit = unit[0] : false;
 
     return !unit || string.length > unit.length ? 'invalid unit'
       : unit == 'l' || unit == 'L' ? unit.toUpperCase()
