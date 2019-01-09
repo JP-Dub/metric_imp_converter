@@ -11,11 +11,11 @@ let math = require('mathjs');
 function convertNumberString(string) {
    var num        = 1,
        decimal    = string.match(/\./g)||0,
-       fraction   = string.match(/\//),
+       fraction   = string.match(/\//g)||0,
        isNotValid = string.match(/[^0-9\/.]/),
        results;
    
-   return (decimal.length > 1 || isNotValid ) ? 'invalid number' 
+   return (decimal.length > 1 || fraction.length > 1 || isNotValid ) ? 'invalid number' 
    : !string ? num  
    : (decimal && fraction) ? (
      results = string.split('.'),
