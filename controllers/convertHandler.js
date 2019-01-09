@@ -41,7 +41,7 @@ function ConvertHandler() {
     index == -1 ? index = input.length : false;
     num    = input.substring(0, index);  
 
-    return num       
+    return input == '' ? 1 : num;       
   };
   
   this.getUnit = function(input) {
@@ -73,7 +73,7 @@ function ConvertHandler() {
   this.convert = function(initNum, initUnit) {
     let num = convertNumberString(initNum),
         convertUnit = convertUnitString(initUnit);
-    
+    errors = [];
     num == 'invalid number' ?  errors.push(num) : false;
     convertUnit == 'invalid unit' ? errors.push(convertUnit) : false;
     
@@ -89,7 +89,7 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    console.log(errors)
+    
     if(!errors.length) {   
       let unitFrom = this.spellOutUnit(initUnit),
           unitTo   = this.spellOutUnit(returnUnit);
@@ -97,7 +97,8 @@ function ConvertHandler() {
       return initNum + ' ' + unitFrom + ' converts to ' + Number.parseFloat(returnNum).toFixed(5) + ' ' + unitTo;  
     } else {    
       return errors.length > 1 ? 'invalid number and unit' : errors[0];
-    }      
+    } 
+    
   };
   
 }

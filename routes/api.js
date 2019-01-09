@@ -31,6 +31,7 @@ module.exports = function (app) {
                         'string'    : toString
                        };
       
+      console.log(initNum)
       res.json(results);
     });
     
