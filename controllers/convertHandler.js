@@ -76,7 +76,7 @@ function ConvertHandler() {
       lbs : 0.453592, kg  : 0.453592,
       mi  : 1.60934,  km  : 1.60934
     }
-   console.log(initUnit)
+   
     return initUnit.match(/gal|lbs|mi/i) ? initNum * conversion[initUnit.toLowerCase()]
     : initNum / conversion[initUnit.toLowerCase()];
   };
