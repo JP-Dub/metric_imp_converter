@@ -66,7 +66,7 @@ function ConvertHandler() {
     let spellOut = {
       mi  : 'miles',   km : 'kilometers',
       lbs : 'pounds',  kg : 'kilograms',
-      gal : 'gallons', L  : 'liter'
+      gal : 'gallons', L  : 'liters'
     };
     
     return spellOut[unit];
