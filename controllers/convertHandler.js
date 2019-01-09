@@ -54,7 +54,7 @@ function ConvertHandler() {
         idx;
     
     location > 2 ? idx = location - 3 : idx = location + 3;
-  
+    
     return units[idx];
   };
 
