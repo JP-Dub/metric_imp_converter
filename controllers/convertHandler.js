@@ -11,11 +11,10 @@ let math = require('mathjs');
 function convertNumberString(string) {
    var decimal    = string.match(/\./),
        fraction   = string.match(/\//),
-       isNotValid = string.match(/(\.).+\1|(\/).+\2|[^0-9\/.]/),
        results;
    
-   return ( isNotValid ) ? 'invalid number' 
-   : (decimal && fraction) ? (
+
+   return (decimal && fraction) ? (
      results = string.split('.'),
      parseInt(results[0]) + math.eval(results[1]))
    : math.eval(string);
@@ -32,12 +31,13 @@ function convertUnitString(string) {
 
 
 function ConvertHandler() {
-  let index, num, errors = []; 
+  let index, convertNum, errors = []; 
   
   this.getNum = function(input) {
     index  = input.indexOf(input.match(/[^0-9\.\/]+$/));
     index == -1 ? index = input.length : false;
-    return input.substring(0, index) || '1';       
+    let num = input.substring(0, index) || '1';       
+    return convertNumberString(num).toString();
   };
   
   this.getUnit = function(input) {
@@ -67,11 +67,12 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
-    let convertUnit = convertUnitString(initUnit);
-    num = convertNumberString(initNum);
+    let convertUnit = convertUnitString(initUnit),
+        isNotValid = initNum.match(/(\.).+\1|(\/).+\2|[^0-9\/.]/);
+        convertNum  = isNotValid ? 'invalid number' : initNum;
     errors = [];
     
-    num == 'invalid number' ?  errors.push(num) : false;
+    convertNum == 'invalid number' ?  errors.push(convertNum) : false;
     convertUnit == 'invalid unit' ? errors.push(convertUnit) : false;
     
     const conversion = {
@@ -80,9 +81,9 @@ function ConvertHandler() {
       mi  : 1.60934,  km  : 1.60934
     }
     
-    return convertUnit == 'invalid unit' || num == 'invalid number' ? num 
-    : convertUnit.match(/gal|lbs|mi/i) ? num * conversion[convertUnit.toLowerCase()]
-    : num / conversion[convertUnit.toLowerCase()];
+    return convertUnit == 'invalid unit' || convertNum== 'invalid number' ? convertNum 
+    : convertUnit.match(/gal|lbs|mi/i) ? convertNum * conversion[convertUnit.toLowerCase()]
+    : convertNum / conversion[convertUnit.toLowerCase()];
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
