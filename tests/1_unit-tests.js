@@ -30,7 +30,7 @@ suite('Unit Tests', function(){
     
     test('Fractional Input', function(done) {
       var input = '3/4lbs';
-      assert.equal(convertHandler.getNum(input), 0.75);
+      assert.equal(convertHandler.getNum(input), .075);
       done();
     });
     
