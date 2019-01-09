@@ -67,9 +67,10 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
-    let num = convertNumberString(initNum),
-        convertUnit = convertUnitString(initUnit);
+    let convertUnit = convertUnitString(initUnit);
+    num = convertNumberString(initNum);
     errors = [];
+    
     num == 'invalid number' ?  errors.push(num) : false;
     convertUnit == 'invalid unit' ? errors.push(convertUnit) : false;
     
@@ -85,7 +86,7 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
- 
+    initNum = num;
     if(!errors.length) {   
       let unitFrom = this.spellOutUnit(initUnit),
           unitTo   = this.spellOutUnit(returnUnit);
