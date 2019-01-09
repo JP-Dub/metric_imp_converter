@@ -37,9 +37,7 @@ function ConvertHandler() {
   this.getNum = function(input) {
     index  = input.indexOf(input.match(/[^0-9\.\/]+$/));
     index == -1 ? index = input.length : false;
-    return input.substring(0, index) || '1';  
-
-    return num;       
+    return input.substring(0, index) || '1';       
   };
   
   this.getUnit = function(input) {
@@ -87,7 +85,7 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    
+ 
     if(!errors.length) {   
       let unitFrom = this.spellOutUnit(initUnit),
           unitTo   = this.spellOutUnit(returnUnit);

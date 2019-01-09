@@ -41,9 +41,10 @@ suite('Functional Tests', function() {
           assert.equal(res.status, 200);
           assert.equal(res.body.initNum, 32);
           assert.equal(res.body.initUnit, 'g');
-          assert.approximately(res.body.returnNum, 0, 0.1);
-          assert.equal(res.body.returnUnit, 'INVALID UNIT');
+          assert.equal(res.body.returnNum, 32);
+          assert.equal(res.body.returnUnit, 'invalid unit');
           done();
+       });
       });
       
       test('Convert 3/7.2/4kg (invalid number)', function(done) {
@@ -54,9 +55,10 @@ suite('Functional Tests', function() {
           assert.equal(res.status, 200);
           assert.equal(res.body.initNum, 3/7.2/4);
           assert.equal(res.body.initUnit, 'kg');
-          assert.approximately(res.body.returnNum, 0, 0.1);
-          assert.equal(res.body.returnUnit, 'LBS');
+          assert.equal(res.body.returnNum, 'invalid number');
+          assert.equal(res.body.returnUnit, 'lbs');
           done();
+       });
       });  
       
       test('Convert 3/7.2/4kilomegagram (invalid number and unit)', function(done) {
