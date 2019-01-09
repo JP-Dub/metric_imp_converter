@@ -9,14 +9,12 @@
 let math = require('mathjs');
 
 function convertNumberString(string) {
-   var num        = 1,
-       decimal    = string.match(/\./),
+   var decimal    = string.match(/\./),
        fraction   = string.match(/\//),
        isNotValid = string.match(/(\.).+\1|(\/).+\2|[^0-9\/.]/),
        results;
    
    return ( isNotValid ) ? 'invalid number' 
-   : !string ? num  
    : (decimal && fraction) ? (
      results = string.split('.'),
      parseInt(results[0]) + math.eval(results[1]))
@@ -39,9 +37,9 @@ function ConvertHandler() {
   this.getNum = function(input) {
     index  = input.indexOf(input.match(/[^0-9\.\/]+$/));
     index == -1 ? index = input.length : false;
-    num    = input.substring(0, index);  
+    return input.substring(0, index) || '1';  
 
-    return input == '' ? 1 : num;       
+    return num;       
   };
   
   this.getUnit = function(input) {
