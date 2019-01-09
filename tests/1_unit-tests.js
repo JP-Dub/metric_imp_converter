@@ -65,8 +65,11 @@ suite('Unit Tests', function(){
     });
     
     test('Unknown Unit Input', function(done) {
-      
-      //done();
+      var input = ['girl','le','ml','kem','lbz', 'GIL','BS','KEG'];
+      input.forEach(function(ele) {
+        assert.equal(convertHandler.getUnit(input), 'invalid unit');
+      });
+      done();
     });  
     
   });
@@ -87,7 +90,11 @@ suite('Unit Tests', function(){
   suite('Function convertHandler.spellOutUnit(unit)', function() {
     
     test('For Each Valid Unit Inputs', function(done) {
-      //see above example for hint
+      var input = ['l','gal','km','mi','kg','lbs'],
+          expect = ['liters','galllons','kilometers','miles','kilograms','pounds'];
+      input.forEach(function(ele, i) {
+        assert.equal(convertHandler.getReturnUnit(ele), expect[i]);
+      });
       done();
     });
     
