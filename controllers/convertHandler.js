@@ -29,7 +29,6 @@ function convertUnitString(string) {
   return !unit || string.length > unit.length ? 'invalid unit': unit;  
 };
 
-
 function ConvertHandler() {
   let index, convertNum, errors = []; 
   
@@ -67,6 +66,7 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
+    
     let convertUnit = convertUnitString(initUnit),
         isNotValid = initNum.match(/(\.).+\1|(\/).+\2|[^0-9\/.]/);
         convertNum  = isNotValid ? 'invalid number' : initNum;
