@@ -25,14 +25,15 @@ module.exports = function (app) {
           initUnit   = convertHandler.getUnit(input),
           returnNum  = convertHandler.convert(initNum, initUnit),
           returnUnit = convertHandler.getReturnUnit(initUnit),
-          toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit),
-          results    = {'initNum'   : initNum,   'initUnit' : initUnit, 
-                        'returnNum' : returnNum, 'returnUnit' : returnUnit, 
-                        'string'    : toString
-                       };
-      
-      console.log(initNum)
-      res.json(results);
+          toString   = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+          
+    res.json({'initNum'   : initNum,   
+              'initUnit' : initUnit, 
+              'returnNum' : returnNum,
+              'returnUnit' : returnUnit, 
+              'string'    : toString
+              });
+   
     });
     
 };
