@@ -7,14 +7,19 @@
 */
 
 let math = require('mathjs');
+let regex = /(\.).+\1|(\/).+\2|[^0-9\/.]/;
 
 function convertNumberString(string) {
    var decimal    = string.match(/\./),
        fraction   = string.match(/\//),
+       isNotValid = string.match(regex),
        results;
-   
-
-   return (decimal && fraction) ? (
+  
+  if(isNotValid) {
+    return string;
+  }
+  
+  return (decimal && fraction) ? (
      results = string.split('.'),
      parseInt(results[0]) + math.eval(results[1]))
    : math.eval(string);
