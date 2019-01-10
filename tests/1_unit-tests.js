@@ -42,7 +42,7 @@ suite('Unit Tests', function(){
     
     test('Invalid Input (double fraction)', function(done) {
       var input = '3/2/3L';
-      assert.equal(convertHandler.getNum(input), 3/2/3);
+      assert.equal(convertHandler.getNum(input), '3/2/3');
       done();
     });
     
