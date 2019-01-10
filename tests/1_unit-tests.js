@@ -93,7 +93,7 @@ suite('Unit Tests', function(){
       var input = ['l','gal','km','mi','kg','lbs'],
           expect = ['liters','galllons','kilometers','miles','kilograms','pounds'];
       input.forEach(function(ele, i) {
-        assert.equal(convertHandler.getReturnUnit(ele), expect[i]);
+        assert.equal(convertHandler.spellOutUnit(ele), expect[i]);
       });
       done();
     });
