@@ -59,7 +59,7 @@ suite('Unit Tests', function(){
     test('For Each Valid Unit Inputs', function(done) {
       var input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
       input.forEach(function(ele) {
-        assert.equal(convertHandler.getUnit(input), ele);
+        assert.equal(convertHandler.getUnit(ele), ele);
       });
       done();
     });
@@ -67,7 +67,7 @@ suite('Unit Tests', function(){
     test('Unknown Unit Input', function(done) {
       var input = ['girl','le','ml','kem','lbz', 'GIL','BS','KEG'];
       input.forEach(function(ele) {
-        assert.equal(convertHandler.getUnit(input), 'invalid unit');
+        assert.equal(convertHandler.getUnit(ele), ele);
       });
       done();
     });  
